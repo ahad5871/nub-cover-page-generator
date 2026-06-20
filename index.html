@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NUB Cover Page Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <aside class="panel">
+      <h2>Lab Report Cover</h2>
+      <p>Fill the form. The cover page updates live.</p>
+
+      <label>Page Type</label>
+      <select id="documentType">
+        <option value="Lab Report">Lab Report</option>
+        <option value="Assignment">Assignment</option>
+        <option value="Project Report">Project Report</option>
+        <option value="Report">Report</option>
+        <option value="Term Paper">Term Paper</option>
+        <option value="Presentation">Presentation</option>
+      </select>
+
+      <label>Department</label>
+      <select id="department">
+        <option value="EEE">EEE</option>
+        <option value="CSE">CSE</option>
+        <option value="CE">CE</option>
+        <option value="ME">ME</option>
+        <option value="BBA">BBA</option>
+        <option value="English">English</option>
+        <option value="Law">Law</option>
+      </select>
+
+      <!-- <label>NUB Logo Upload</label>
+      <input type="file" id="logoUpload" accept="image/*" />
+      <small>Or put your logo in the same folder as <b>nub-logo.png</b>.</small> -->
+
+      <label id="serialLabel">Experiment No</label>
+      <input id="serialNo" type="text" value="01" />
+
+      <label id="topicLabel">Experiment Name</label>
+      <input id="topicName" type="text" value="Experiment Name" />
+
+      <label>Course Code</label>
+      <input id="courseCode" type="text" value="Course Code" />
+
+      <label>Course Title</label>
+      <input id="courseTitle" type="text" value="Course Title" />
+
+      <label>Student Name</label>
+      <input id="studentName" type="text" value="Your Name" />
+
+      <label>Student ID</label>
+      <input id="studentId" type="text" value="Your ID" />
+
+      <label>Semester</label>
+      <input id="semester" type="text" value="Semester" />
+
+      <label>Section</label>
+      <select id="section">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+        <option value="Morning">Morning</option>
+        <option value="Evening">Evening</option>
+      </select>
+
+      <label>Teacher Name</label>
+      <input id="teacherName" type="text" value="Teacher Name" />
+
+      <label>Designation</label>
+      <select id="teacherDesignation">
+        <option value="Lecturer">Lecturer</option>
+        <option value="Senior Lecturer" selected>Senior Lecturer</option>
+        <option value="Assistant Professor">Assistant Professor</option>
+        <option value="Associate Professor">Associate Professor</option>
+        <option value="Professor">Professor</option>
+        <option value="Lab Instructor">Lab Instructor</option>
+      </select>
+
+      <label>Submission Date</label>
+      <input id="submissionDate" type="date" value="Submission Date" />
+
+      <label>Remarks</label>
+      <textarea id="remarks"></textarea>
+
+      <button class="download" type="button" onclick="window.print()">Download / Save as PDF</button>
+      <button class="reset" type="button" id="resetBtn">Reset Form</button>
+
+<div class="developer-credit">
+  <p>Developed by <strong>Md Ahad Hossen</strong></p>
+ <!-- development credit code is here -->
+  <div class="developer-socials">
+    <a href="https://www.linkedin.com/in/md-ahad-hossen-a824391b8/" target="_blank" rel="noopener noreferrer"
+      title="LinkedIn">
+      <svg class="social-icon linkedin-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0Z" />
+      </svg>
+    </a>
+
+    <a href="https://github.com/ahad5871" target="_blank" rel="noopener noreferrer" title="GitHub">
+      <svg class="social-icon github-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56v-2.16c-3.2.7-3.88-1.37-3.88-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.74 2.67 1.24 3.32.95.1-.74.4-1.24.72-1.52-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.16 1.18A10.9 10.9 0 0 1 12 6.01c.98 0 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.41.35.77 1.04.77 2.11v3.19c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+      </svg>
+    </a>
+  </div>
+</div>
+
+    </aside>
+
+    <section class="preview-wrap">
+      <div class="page" id="coverPage">
+        <svg class="top-accent" viewBox="0 0 600 10" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="cyanFade" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#ffffff" />
+              <stop offset="0.5" stop-color="#25d8e8" />
+              <stop offset="1" stop-color="#ffffff" />
+            </linearGradient>
+          </defs>
+          <rect width="600" height="10" fill="url(#cyanFade)" />
+        </svg>
+
+        <div class="left-line long"></div>
+        <div class="left-line short"></div>
+
+        <div class="logo-box">
+          <img id="logoImage" src="nub-logo.png" alt="NUB Logo" />
+          <div id="logoFallback" class="logo-fallback">
+            <span>NORTHERN UNIVERSITY</span>
+            <b></b>
+            <span>BANGLADESH</span>
+          </div>
+        </div>
+
+        <header class="title-area">
+          <h1 id="outDocumentType">Lab Report</h1>
+          <div class="title-line"></div>
+          <div class="department-row">
+            <span>Department of</span>
+            <strong id="outDepartment"></strong>
+          </div>
+        </header>
+
+        <section class="experiment-area">
+          <p><b id="outNoLabel">Experiment No:</b> <span id="outSerialNo"></span></p>
+          <p><b id="outNameLabel">Experiment Name:</b> <span id="outTopicName"></span></p>
+        </section>
+
+        <section class="course-box">
+          <p><b>Course code:</b> <span id="outCourseCode"></span></p>
+          <p><b>Course Title:</b> <span id="outCourseTitle"></span></p>
+        </section>
+
+        <section class="submitted-by">
+          <div class="badge">Submitted By</div>
+          <p>Name: <span id="outStudentName"></span></p>
+          <p>Id: <span id="outStudentId"></span></p>
+          <p>Semester: <span id="outSemester"></span></p>
+          <p>Section : <span id="outSection"></span></p>
+          <small>Northern University Bangladesh</small>
+        </section>
+
+        <section class="remarks-box">
+          <b>Remarks:</b>
+          <span id="outRemarks"></span>
+        </section>
+
+        <section class="submitted-to">
+          <div class="badge">Submitted To</div>
+          <p>Name: <span id="outTeacherName"></span></p>
+          <p>Designation: <span id="outTeacherDesignation"></span></p>
+          <!-- <small>Department of EEE</small> -->
+          <small>Northern University Bangladesh</small>
+        </section>
+
+        <div class="submission-date">Submission date: <span id="outSubmissionDate"></span></div>
+
+        <!-- <svg class="watermark" viewBox="0 0 220 360" aria-hidden="true">
+          <path d="M132 2 C175 82 196 139 178 199 C166 239 164 286 194 352 C139 313 126 253 138 203 C148 160 158 117 132 2Z" fill="#111" opacity="0.055"/>
+          <path d="M77 51 C118 125 136 180 116 238 C104 274 101 315 128 357 C83 335 55 286 70 231 C82 187 101 138 77 51Z" fill="#111" opacity="0.055"/>
+          <path d="M30 132 C61 184 70 230 50 276 C39 302 39 329 62 358 C22 334 4 292 16 253 C30 210 47 181 30 132Z" fill="#111" opacity="0.055"/>
+        </svg> -->
+
+<svg class="watermark" viewBox="0 0 220 360" aria-hidden="true">
+  <path d="M132 2 C175 82 196 139 178 199 C166 239 164 286 194 352 C139 313 126 253 138 203 C148 160 158 117 132 2Z"
+    fill="#243c9f" opacity="0.055" />
+  <path d="M77 51 C118 125 136 180 116 238 C104 274 101 315 128 357 C83 335 55 286 70 231 C82 187 101 138 77 51Z"
+    fill="#243c9f" opacity="0.055" />
+  <path d="M30 132 C61 184 70 230 50 276 C39 302 39 329 62 358 C22 334 4 292 16 253 C30 210 47 181 30 132Z"
+    fill="#243c9f" opacity="0.055" />
+</svg>
+
+
+
+        <svg class="bottom-shape" viewBox="0 0 170 190" aria-hidden="true">
+          <polygon points="0,190 170,190 0,130" fill="#1d4ed8" /> 
+          <polygon points="0,130 78,40 54,130" fill="#312e81" />
+          <polygon points="22,96 170,190 22,190" fill="#60a5fa" />
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -15,23 +15,6 @@ const ids = [
   "remarks"
 ];
 
-const defaults = {
-  documentType: "Lab Report",
-  department: "EEE",
-  serialNo: "01",
-  topicName: "Ohm's Law verification",
-  courseCode: "EEE 2217",
-  courseTitle: "Digital Electronics",
-  studentName: "Md. Ahad Hossen",
-  studentId: "44250102578",
-  semester: "5th",
-  section: "B",
-  teacherName: "Bithi Mitra",
-  teacherDesignation: "Senior Lecturer",
-  submissionDate: "2026-06-20",
-  remarks: ""
-};
-
 function getValue(id) {
   const el = document.getElementById(id);
   return el ? el.value.trim() : "";
@@ -39,7 +22,10 @@ function getValue(id) {
 
 function setOutput(id, value) {
   const el = document.getElementById(id);
-  if (el) el.textContent = value;
+
+  if (el) {
+    el.textContent = value;
+  }
 }
 
 function formatDate(value) {
@@ -47,7 +33,9 @@ function formatDate(value) {
 
   const parts = value.split("-");
 
-  if (parts.length !== 3) return value;
+  if (parts.length !== 3) {
+    return value;
+  }
 
   const months = [
     "January",
@@ -68,7 +56,9 @@ function formatDate(value) {
   const monthIndex = Number(parts[1]) - 1;
   const day = Number(parts[2]);
 
-  if (!months[monthIndex] || !day) return value;
+  if (!months[monthIndex] || !day) {
+    return value;
+  }
 
   return `${day} ${months[monthIndex]} ${year}`;
 }
@@ -100,13 +90,25 @@ function labelsFor(type) {
 }
 
 function updatePreview() {
-  const type = getValue("documentType") || "Lab Report";
-  const [noLabel, nameLabel] = labelsFor(type);
+  const selectedType = getValue("documentType");
 
-  setOutput("outDocumentType", type);
+  /*
+    Document type empty থাকলে শুধু label calculation-এর জন্য
+    Lab Report ব্যবহার করা হবে। Preview title blank থাকবে।
+  */
+  const typeForLabels = selectedType || "Lab Report";
+  const [noLabel, nameLabel] = labelsFor(typeForLabels);
+
+  setOutput("outDocumentType", selectedType);
   setOutput("outDepartment", getValue("department"));
+
   setOutput("outNoLabel", noLabel);
   setOutput("outNameLabel", nameLabel);
+
+  /*
+    Field empty হলে output-ও empty থাকবে।
+    কোনো field name দ্বিতীয়বার দেখাবে না।
+  */
   setOutput("outSerialNo", getValue("serialNo"));
   setOutput("outTopicName", getValue("topicName"));
   setOutput("outCourseCode", getValue("courseCode"));
@@ -116,28 +118,39 @@ function updatePreview() {
   setOutput("outSemester", getValue("semester"));
   setOutput("outSection", getValue("section"));
   setOutput("outTeacherName", getValue("teacherName"));
+
   setOutput(
     "outTeacherDesignation",
     getValue("teacherDesignation")
   );
+
   setOutput(
     "outSubmissionDate",
     formatDate(getValue("submissionDate"))
   );
+
   setOutput("outRemarks", getValue("remarks"));
 
-  const serialLabel = document.getElementById("serialLabel");
-  const topicLabel = document.getElementById("topicLabel");
+  const serialLabel =
+    document.getElementById("serialLabel");
+
+  const topicLabel =
+    document.getElementById("topicLabel");
 
   if (serialLabel) {
-    serialLabel.textContent = noLabel.replace(":", "");
+    serialLabel.textContent =
+      noLabel.replace(":", "");
   }
 
   if (topicLabel) {
-    topicLabel.textContent = nameLabel.replace(":", "");
+    topicLabel.textContent =
+      nameLabel.replace(":", "");
   }
 }
 
+/*
+  Input পরিবর্তন হলে live preview update হবে।
+*/
 ids.forEach((id) => {
   const el = document.getElementById(id);
 
@@ -148,11 +161,10 @@ ids.forEach((id) => {
 });
 
 /*
-  RESET BUTTON
-
-  Reset চাপলে সব field clear হবে।
+  Reset button চাপলে সব field clear হবে।
 */
-const resetBtn = document.getElementById("resetBtn");
+const resetBtn =
+  document.getElementById("resetBtn");
 
 if (resetBtn) {
   resetBtn.addEventListener("click", () => {
@@ -168,9 +180,17 @@ if (resetBtn) {
   });
 }
 
-const logoImage = document.getElementById("logoImage");
-const logoFallback = document.getElementById("logoFallback");
-// const logoUpload = document.getElementById("logoUpload");
+/*
+  Logo handling
+*/
+const logoImage =
+  document.getElementById("logoImage");
+
+const logoFallback =
+  document.getElementById("logoFallback");
+
+const logoUpload =
+  document.getElementById("logoUpload");
 
 if (logoImage && logoFallback) {
   logoImage.addEventListener("error", () => {
@@ -180,27 +200,34 @@ if (logoImage && logoFallback) {
 }
 
 if (
-  typeof logoUpload !== "undefined" &&
   logoUpload &&
   logoImage &&
   logoFallback
 ) {
-  logoUpload.addEventListener("change", (event) => {
-    const file =
-      event.target.files && event.target.files[0];
+  logoUpload.addEventListener(
+    "change",
+    (event) => {
+      const file =
+        event.target.files &&
+        event.target.files[0];
 
-    if (!file) return;
+      if (!file) return;
 
-    const reader = new FileReader();
+      const reader = new FileReader();
 
-    reader.onload = (e) => {
-      logoImage.src = e.target.result;
-      logoImage.style.display = "block";
-      logoFallback.style.display = "none";
-    };
+      reader.onload = (e) => {
+        logoImage.src = e.target.result;
+        logoImage.style.display = "block";
+        logoFallback.style.display = "none";
+      };
 
-    reader.readAsDataURL(file);
-  });
+      reader.readAsDataURL(file);
+    }
+  );
 }
 
+/*
+  Page load-এর সময় form-এর current data
+  অনুযায়ী preview দেখাবে।
+*/
 updatePreview();

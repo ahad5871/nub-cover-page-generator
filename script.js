@@ -44,12 +44,24 @@ function setOutput(id, value) {
 
 function formatDate(value) {
   if (!value) return "";
+
   const parts = value.split("-");
+
   if (parts.length !== 3) return value;
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
   ];
 
   const year = parts[0];
@@ -57,6 +69,7 @@ function formatDate(value) {
   const day = Number(parts[2]);
 
   if (!months[monthIndex] || !day) return value;
+
   return `${day} ${months[monthIndex]} ${year}`;
 }
 
@@ -103,30 +116,54 @@ function updatePreview() {
   setOutput("outSemester", getValue("semester"));
   setOutput("outSection", getValue("section"));
   setOutput("outTeacherName", getValue("teacherName"));
-  setOutput("outTeacherDesignation", getValue("teacherDesignation"));
-  setOutput("outSubmissionDate", formatDate(getValue("submissionDate")));
+  setOutput(
+    "outTeacherDesignation",
+    getValue("teacherDesignation")
+  );
+  setOutput(
+    "outSubmissionDate",
+    formatDate(getValue("submissionDate"))
+  );
   setOutput("outRemarks", getValue("remarks"));
 
   const serialLabel = document.getElementById("serialLabel");
   const topicLabel = document.getElementById("topicLabel");
-  if (serialLabel) serialLabel.textContent = noLabel.replace(":", "");
-  if (topicLabel) topicLabel.textContent = nameLabel.replace(":", "");
+
+  if (serialLabel) {
+    serialLabel.textContent = noLabel.replace(":", "");
+  }
+
+  if (topicLabel) {
+    topicLabel.textContent = nameLabel.replace(":", "");
+  }
 }
 
 ids.forEach((id) => {
   const el = document.getElementById(id);
+
   if (!el) return;
+
   el.addEventListener("input", updatePreview);
   el.addEventListener("change", updatePreview);
 });
 
+/*
+  RESET BUTTON
+
+  Reset চাপলে সব field clear হবে।
+*/
 const resetBtn = document.getElementById("resetBtn");
+
 if (resetBtn) {
   resetBtn.addEventListener("click", () => {
-    Object.keys(defaults).forEach((id) => {
+    ids.forEach((id) => {
       const el = document.getElementById(id);
-      if (el) el.value = defaults[id];
+
+      if (!el) return;
+
+      el.value = "";
     });
+
     updatePreview();
   });
 }
@@ -142,17 +179,26 @@ if (logoImage && logoFallback) {
   });
 }
 
-if (logoUpload && logoImage && logoFallback) {
+if (
+  typeof logoUpload !== "undefined" &&
+  logoUpload &&
+  logoImage &&
+  logoFallback
+) {
   logoUpload.addEventListener("change", (event) => {
-    const file = event.target.files && event.target.files[0];
+    const file =
+      event.target.files && event.target.files[0];
+
     if (!file) return;
 
     const reader = new FileReader();
+
     reader.onload = (e) => {
       logoImage.src = e.target.result;
       logoImage.style.display = "block";
       logoFallback.style.display = "none";
     };
+
     reader.readAsDataURL(file);
   });
 }
